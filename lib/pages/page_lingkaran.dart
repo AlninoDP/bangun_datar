@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:shapes_formula/utils/show_answer_alert.dart';
 import 'package:shapes_formula/widgets/button_hitung.dart';
-import 'package:shapes_formula/widgets/custom_rumus_text.dart';
+import 'package:shapes_formula/widgets/rumus_text.dart';
 import 'package:shapes_formula/widgets/custom_textfield.dart';
 
 class PageLingkaran extends StatefulWidget {
@@ -16,10 +16,19 @@ class PageLingkaran extends StatefulWidget {
 }
 
 class _PageLingkaranState extends State<PageLingkaran> {
+  bool btnIsEnabled = false;
+  final TextEditingController textFieldJariJariController =
+      TextEditingController();
+
+  // untuk dispose resource saat pembuatan objek
+  @override
+  void dispose() {
+    textFieldJariJariController.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
-    final TextEditingController textFieldJariJariController =
-        TextEditingController();
     return Column(
       children: [
         // Image
@@ -31,7 +40,7 @@ class _PageLingkaranState extends State<PageLingkaran> {
 
         // Row Rumus
         const IntrinsicHeight(
-            child: CustomRumusText(
+            child: RumusText(
           rumusLuas: 'phi * r * r',
           rumusKeliling: 'phi * d',
         )),
@@ -45,24 +54,44 @@ class _PageLingkaranState extends State<PageLingkaran> {
             hintText: 'Masukan Nilai Jari - Jari (r)',
             unitText: 'Jari - Jari (r): ',
             textController: textFieldJariJariController,
+            onChanged: (value) {
+              setState(() {
+                btnIsEnabled = textFieldJariJariController.text.isNotEmpty;
+              });
+            },
           ),
         ),
         const SizedBox(height: 20),
 
         // Button
-        //TODO: VALIDATOR TEXTFIELD
         ButtonHitung(
-          btnLuasOnPressed: () {
-            setState(() {
-              // textFieldJariJariController.value.text.isNotEmpty
-              final String luas =
-                  _hitungLuas(double.parse(textFieldJariJariController.text))
-                      .toString();
-              showAnswerAlert(context,
-                  'Radius: ${textFieldJariJariController.text}\nLuas Lingkaran: $luas');
-            });
-          },
-        )
+          btnLuasOnPressed: (btnIsEnabled == true)
+              ? () {
+                  setState(() {
+                    final nilaiLuas = _hitungLuas(
+                        double.parse(textFieldJariJariController.text));
+
+                    final String luas = nilaiLuas.toString();
+
+                    showAnswerAlert(context,
+                        'Radius: ${textFieldJariJariController.text}\nLuas Lingkaran: $luas');
+                  });
+                }
+              : null,
+          btnKelilingOnPressed: (btnIsEnabled == true)
+              ? () {
+                  setState(() {
+                    final nilaiKeliling = _hitungKeliling(
+                        double.parse(textFieldJariJariController.text));
+
+                    final String keliling = nilaiKeliling.toString();
+
+                    showAnswerAlert(context,
+                        'Radius: ${textFieldJariJariController.text}\nKeliling Lingkaran: $keliling');
+                  });
+                }
+              : null,
+        ),
       ],
     );
   }
@@ -72,4 +101,10 @@ double _hitungLuas(double jarijari) {
   const double phi = 3.14;
   final luas = phi * jarijari * jarijari;
   return luas;
+}
+
+double _hitungKeliling(double jarijari) {
+  const double phi = 3.14;
+  final keliling = phi * (2 * jarijari);
+  return keliling;
 }
