@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class CustomRumusText extends StatelessWidget {
-  const CustomRumusText({
+class RumusText extends StatelessWidget {
+  const RumusText({
     super.key,
     required this.rumusLuas,
     required this.rumusKeliling,
