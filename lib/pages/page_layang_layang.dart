@@ -138,8 +138,8 @@ class _PageLayangLayangState extends State<PageLayangLayang> {
                     showAnswerAlert(
                       context,
                       '''
-Diagonal 1: ${textFieldD1Controller.text}
-Diagonal 2: ${textFieldD2Controller.text}
+Diagonal 1: $nilaiD1
+Diagonal 2: $nilaiD2
 Luas Layang Layang: $luas''',
                     );
                   });
@@ -158,8 +158,8 @@ Luas Layang Layang: $luas''',
                     showAnswerAlert(
                       context,
                       """
-Sisi a: ${textFieldSisiAController.text}
-Sisi b: ${textFieldSisiBController.text}
+Sisi a: $nilaiSisiA
+Sisi b: $nilaiSisiB
 Keliling Layang Layang: $keliling""",
                     );
                   });

@@ -152,9 +152,9 @@ class _PageTrapesiumState extends State<PageTrapesium> {
                     showAnswerAlert(
                       context,
                       '''
-Alas (a): ${textFieldAController.text}
-Alas (b): ${textFieldBController.text}
-Tinggi (h): ${textFieldHController.text}
+Alas (a): $nilaiAlasA
+Alas (b): $nilaiAlasB
+Tinggi (h): $nilaiTinggi
 Luas Trapesium: $luas''',
                     );
                   });
@@ -174,10 +174,10 @@ Luas Trapesium: $luas''',
                     showAnswerAlert(
                       context,
                       '''
-Alas (a): ${textFieldAController.text}
-Alas (b): ${textFieldBController.text}
-Sisi (c): ${textFieldCController.text}
-Sisi (d): ${textFieldDController.text} 
+Alas (a): $nilaiAlasA
+Alas (b): $nilaiAlasB
+Sisi (c): $nilaiSisiC
+Sisi (d): $nilaiSisiD 
 Keliling Trapesium: $keliling''',
                     );
                   });

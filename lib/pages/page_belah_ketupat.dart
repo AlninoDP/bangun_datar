@@ -123,8 +123,8 @@ class _PageBelahKetupatState extends State<PageBelahKetupat> {
                     showAnswerAlert(
                       context,
                       '''
-Diagonal 1: ${textFieldD1Controller.text}
-Diagonal 2: ${textFieldD2Controller.text}
+Diagonal 1: $nilaiD1
+Diagonal 2: $nilaiD2
 Luas Belah Ketupat: $luas''',
                     );
                   });
@@ -139,7 +139,7 @@ Luas Belah Ketupat: $luas''',
                     final keliling = _hitungKeliling(nilaiSisi);
 
                     showAnswerAlert(context,
-                        'Sisi: ${textFieldSisiController.text}\nKeliling Belah Ketupat: $keliling');
+                        'Sisi: $nilaiSisi\nKeliling Belah Ketupat: $keliling');
                   });
                 }
               : null,
