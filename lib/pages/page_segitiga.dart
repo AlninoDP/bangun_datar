@@ -4,31 +4,34 @@ import 'package:shapes_formula/widgets/button_hitung.dart';
 import 'package:shapes_formula/widgets/rumus_text.dart';
 import 'package:shapes_formula/widgets/custom_textfield.dart';
 
-class PageJajarGenjang extends StatefulWidget {
-  const PageJajarGenjang({
+class PageSegitiga extends StatefulWidget {
+  const PageSegitiga({
     super.key,
     required this.imagePath,
   });
   final String imagePath;
 
   @override
-  State<PageJajarGenjang> createState() => _PageJajarGenjangState();
+  State<PageSegitiga> createState() => _PageSegitigaState();
 }
 
-class _PageJajarGenjangState extends State<PageJajarGenjang> {
+class _PageSegitigaState extends State<PageSegitiga> {
   bool btnLuasIsEnabled = false;
   bool btnKelilingIsEnabled = false;
   final TextEditingController textFieldAlasController = TextEditingController();
   final TextEditingController textFieldTinggiController =
       TextEditingController();
-  final TextEditingController textFieldSisiController = TextEditingController();
-
+  final TextEditingController textFieldSisiAController =
+      TextEditingController();
+  final TextEditingController textFieldSisiCController =
+      TextEditingController();
   // untuk dispose resource saat widget tidak di tampilkan
   @override
   void dispose() {
     textFieldAlasController.dispose();
     textFieldTinggiController.dispose();
-    textFieldSisiController.dispose();
+    textFieldSisiAController.dispose();
+    textFieldSisiCController.dispose();
     super.dispose();
   }
 
@@ -46,8 +49,8 @@ class _PageJajarGenjangState extends State<PageJajarGenjang> {
         // Row Rumus
         const IntrinsicHeight(
             child: RumusText(
-          rumusLuas: 'b * h',
-          rumusKeliling: '2 (a + b)',
+          rumusLuas: 'b * h / 2',
+          rumusKeliling: 'a + b + c',
         )),
 
         // Divider
@@ -61,7 +64,7 @@ class _PageJajarGenjangState extends State<PageJajarGenjang> {
         ),
         const SizedBox(height: 20),
 
-        // Row Textfield b
+        // Row Textfield Alas
         Center(
           child: CustomTextField(
             unitText: 'Alas (b): ',
@@ -74,8 +77,8 @@ class _PageJajarGenjangState extends State<PageJajarGenjang> {
         // Row Textfield Tinggi
         Center(
           child: CustomTextField(
-            unitText: 'Tinggi (h): ',
-            hintText: 'Masukan Nilai (h)',
+            unitText: 'Tinggi (hb): ',
+            hintText: 'Masukan Nilai (hb)',
             textController: textFieldTinggiController,
             onChanged: (value) {
               setState(() {
@@ -97,17 +100,28 @@ class _PageJajarGenjangState extends State<PageJajarGenjang> {
         ),
         const SizedBox(height: 20),
 
-        // Row Textfield Sisi
+        // Row Textfield Sisi a
         Center(
           child: CustomTextField(
             unitText: 'Sisi (a): ',
             hintText: 'Masukan Nilai Sisi (a)',
-            textController: textFieldSisiController,
+            textController: textFieldSisiAController,
+          ),
+        ),
+        const SizedBox(height: 20),
+
+        // Row Textfield Sisi c
+        Center(
+          child: CustomTextField(
+            unitText: 'Sisi (c): ',
+            hintText: 'Masukan Nilai Sisi (c)',
+            textController: textFieldSisiCController,
             onChanged: (value) {
               setState(() {
                 btnKelilingIsEnabled =
                     textFieldAlasController.text.isNotEmpty &&
-                        textFieldSisiController.text.isNotEmpty;
+                        textFieldSisiAController.text.isNotEmpty &&
+                        textFieldSisiCController.text.isNotEmpty;
               });
             },
           ),
@@ -130,7 +144,7 @@ class _PageJajarGenjangState extends State<PageJajarGenjang> {
                       '''
 Alas: $nilaiAlas
 Tinggi: $nilaiTinggi
-Luas Jajar Genjang: $luas''',
+Luas Segitiga: $luas''',
                     );
                   });
                 }
@@ -138,19 +152,24 @@ Luas Jajar Genjang: $luas''',
           btnKelilingOnPressed: (btnKelilingIsEnabled == true)
               ? () {
                   setState(() {
+                    final nilaiSisiA =
+                        double.parse(textFieldSisiAController.text);
                     final nilaiAlas =
                         double.parse(textFieldAlasController.text);
-                    final nilaiSisi =
-                        double.parse(textFieldSisiController.text);
 
-                    final keliling = _hitungKeliling(nilaiSisi, nilaiAlas);
+                    final nilaiSisiC =
+                        double.parse(textFieldSisiCController.text);
+
+                    final keliling =
+                        _hitungKeliling(nilaiSisiA, nilaiAlas, nilaiSisiC);
 
                     showAnswerAlert(
                       context,
-                      '''
-Alas: $nilaiAlas
-Sisi: $nilaiSisi
-Keliling Jajar Genjang: $keliling''',
+                      """
+Sisi a: $nilaiSisiA
+Alas b: $nilaiAlas
+Sisi c: $nilaiSisiC
+Keliling Segitiga: $keliling""",
                     );
                   });
                 }
@@ -164,11 +183,11 @@ Keliling Jajar Genjang: $keliling''',
 }
 
 double _hitungLuas(double alas, double tinggi) {
-  final luas = alas * tinggi;
+  final luas = alas * tinggi / 2;
   return luas;
 }
 
-double _hitungKeliling(double sisi, double alas) {
-  final keliling = 2 * (sisi + alas);
+double _hitungKeliling(double sisiA, double alas, double sisiC) {
+  final keliling = sisiA + alas + sisiC;
   return keliling;
 }

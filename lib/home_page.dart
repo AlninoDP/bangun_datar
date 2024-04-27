@@ -4,6 +4,7 @@ import 'package:shapes_formula/pages/page_belah_ketupat.dart';
 import 'package:shapes_formula/pages/page_jajar_genjang.dart';
 import 'package:shapes_formula/pages/page_layang_layang.dart';
 import 'package:shapes_formula/pages/page_lingkaran.dart';
+import 'package:shapes_formula/pages/page_segitiga.dart';
 import 'package:shapes_formula/pages/page_trapesium.dart';
 import 'package:shapes_formula/widgets/dropdown_shape.dart';
 
@@ -80,7 +81,7 @@ Widget _shapesFormulaMenu(BangunDatar? bangunDatar) {
     case BangunDatar.jajarGenjang:
       return PageJajarGenjang(imagePath: _getShapesImagePath(bangunDatar));
     case BangunDatar.segitiga:
-      return Placeholder();
+      return PageSegitiga(imagePath: _getShapesImagePath(bangunDatar));
 
     default:
       return const Placeholder();
