@@ -3,6 +3,7 @@ import 'package:shapes_formula/constant/constant.dart';
 import 'package:shapes_formula/pages/page_belah_ketupat.dart';
 import 'package:shapes_formula/pages/page_layang_layang.dart';
 import 'package:shapes_formula/pages/page_lingkaran.dart';
+import 'package:shapes_formula/pages/page_trapesium.dart';
 import 'package:shapes_formula/widgets/dropdown_shape.dart';
 
 class HomePage extends StatefulWidget {
@@ -74,7 +75,7 @@ Widget _shapesFormulaMenu(BangunDatar? bangunDatar) {
     case BangunDatar.layangLayang:
       return PageLayangLayang(imagePath: _getShapesImagePath(bangunDatar));
     case BangunDatar.trapesium:
-      return Placeholder();
+      return PageTrapesium(imagePath: _getShapesImagePath(bangunDatar));
     case BangunDatar.jajarGenjang:
       return Placeholder();
     case BangunDatar.segitiga:
