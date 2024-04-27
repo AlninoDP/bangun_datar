@@ -44,9 +44,8 @@ class _PageLingkaranState extends State<PageLingkaran> {
           rumusLuas: 'phi * r * r',
           rumusKeliling: 'phi * d',
         )),
-        const SizedBox(
-          height: 20,
-        ),
+
+        const SizedBox(height: 20),
 
         // Row Textfield
         Center(
@@ -92,6 +91,7 @@ class _PageLingkaranState extends State<PageLingkaran> {
                 }
               : null,
         ),
+        const SizedBox(height: 20),
       ],
     );
   }

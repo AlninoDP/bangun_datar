@@ -48,9 +48,17 @@ class _PageBelahKetupatState extends State<PageBelahKetupat> {
           rumusLuas: 'p * q / 2',
           rumusKeliling: '4 * a',
         )),
-        const SizedBox(
-          height: 20,
+
+        // Divider
+        const SizedBox(height: 20),
+        const Divider(),
+        const Center(
+          child: Text(
+            'LUAS',
+            style: TextStyle(fontSize: 20),
+          ),
         ),
+        const SizedBox(height: 20),
 
         // Row Textfield D1
         Center(
@@ -74,6 +82,16 @@ class _PageBelahKetupatState extends State<PageBelahKetupat> {
                     textFieldD1Controller.text.isNotEmpty;
               });
             },
+          ),
+        ),
+
+        // Divider
+        const SizedBox(height: 20),
+        const Divider(),
+        const Center(
+          child: Text(
+            'KELILING',
+            style: TextStyle(fontSize: 20),
           ),
         ),
         const SizedBox(height: 20),
@@ -112,16 +130,18 @@ class _PageBelahKetupatState extends State<PageBelahKetupat> {
               ? () {
                   setState(() {
                     final nilaiKeliling = _hitungKeliling(
-                        double.parse(textFieldD1Controller.text));
+                        double.parse(textFieldSisiController.text));
 
                     final String keliling = nilaiKeliling.toString();
 
                     showAnswerAlert(context,
-                        'Radius: ${textFieldD1Controller.text}\nKeliling Lingkaran: $keliling');
+                        'Sisi: ${textFieldSisiController.text}\nKeliling Belah Ketupat: $keliling');
                   });
                 }
               : null,
         ),
+
+        const SizedBox(height: 20),
       ],
     );
   }
