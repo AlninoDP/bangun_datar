@@ -118,21 +118,25 @@ class _PageBelahKetupatState extends State<PageBelahKetupat> {
                   setState(() {
                     final nilaiD1 = double.parse(textFieldD1Controller.text);
                     final nilaiD2 = double.parse(textFieldD2Controller.text);
-                    final nilaiLuas = _hitungLuas(nilaiD1, nilaiD2);
-                    final String luas = nilaiLuas.toString();
+                    final luas = _hitungLuas(nilaiD1, nilaiD2);
 
-                    showAnswerAlert(context,
-                        'Diagonal 1: ${textFieldD1Controller.text}\nDiagonal 2: ${textFieldD2Controller.text} \nLuas Belah Ketupat: $luas');
+                    showAnswerAlert(
+                      context,
+                      '''
+Diagonal 1: ${textFieldD1Controller.text}
+Diagonal 2: ${textFieldD2Controller.text}
+Luas Belah Ketupat: $luas''',
+                    );
                   });
                 }
               : null,
           btnKelilingOnPressed: (btnKelilingIsEnabled == true)
               ? () {
                   setState(() {
-                    final nilaiKeliling = _hitungKeliling(
-                        double.parse(textFieldSisiController.text));
+                    final nilaiSisi =
+                        double.parse(textFieldSisiController.text);
 
-                    final String keliling = nilaiKeliling.toString();
+                    final keliling = _hitungKeliling(nilaiSisi);
 
                     showAnswerAlert(context,
                         'Sisi: ${textFieldSisiController.text}\nKeliling Belah Ketupat: $keliling');

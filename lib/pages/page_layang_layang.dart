@@ -133,11 +133,15 @@ class _PageLayangLayangState extends State<PageLayangLayang> {
                   setState(() {
                     final nilaiD1 = double.parse(textFieldD1Controller.text);
                     final nilaiD2 = double.parse(textFieldD2Controller.text);
-                    final nilaiLuas = _hitungLuas(nilaiD1, nilaiD2);
-                    final String luas = nilaiLuas.toString();
+                    final luas = _hitungLuas(nilaiD1, nilaiD2);
 
-                    showAnswerAlert(context,
-                        'Diagonal 1: ${textFieldD1Controller.text}\nDiagonal 2: ${textFieldD2Controller.text} \nLuas Layang Layang: $luas');
+                    showAnswerAlert(
+                      context,
+                      '''
+Diagonal 1: ${textFieldD1Controller.text}
+Diagonal 2: ${textFieldD2Controller.text}
+Luas Layang Layang: $luas''',
+                    );
                   });
                 }
               : null,
@@ -149,13 +153,15 @@ class _PageLayangLayangState extends State<PageLayangLayang> {
                     final nilaiSisiB =
                         double.parse(textFieldSisiBController.text);
 
-                    final nilaiKeliling =
-                        _hitungKeliling(nilaiSisiA, nilaiSisiB);
+                    final keliling = _hitungKeliling(nilaiSisiA, nilaiSisiB);
 
-                    final String keliling = nilaiKeliling.toString();
-
-                    showAnswerAlert(context,
-                        'Sisi a: ${textFieldSisiAController.text}\nSisi b: ${textFieldSisiBController.text}\nKeliling Layang Layang: $keliling');
+                    showAnswerAlert(
+                      context,
+                      """
+Sisi a: ${textFieldSisiAController.text}
+Sisi b: ${textFieldSisiBController.text}
+Keliling Layang Layang: $keliling""",
+                    );
                   });
                 }
               : null,

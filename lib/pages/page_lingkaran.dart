@@ -67,10 +67,8 @@ class _PageLingkaranState extends State<PageLingkaran> {
           btnLuasOnPressed: (btnIsEnabled == true)
               ? () {
                   setState(() {
-                    final nilaiLuas = _hitungLuas(
+                    final luas = _hitungLuas(
                         double.parse(textFieldJariJariController.text));
-
-                    final String luas = nilaiLuas.toString();
 
                     showAnswerAlert(context,
                         'Radius: ${textFieldJariJariController.text}\nLuas Lingkaran: $luas');
@@ -80,10 +78,8 @@ class _PageLingkaranState extends State<PageLingkaran> {
           btnKelilingOnPressed: (btnIsEnabled == true)
               ? () {
                   setState(() {
-                    final nilaiKeliling = _hitungKeliling(
+                    final keliling = _hitungKeliling(
                         double.parse(textFieldJariJariController.text));
-
-                    final String keliling = nilaiKeliling.toString();
 
                     showAnswerAlert(context,
                         'Radius: ${textFieldJariJariController.text}\nKeliling Lingkaran: $keliling');
