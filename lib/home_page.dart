@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:shapes_formula/constant/constant.dart';
 import 'package:shapes_formula/pages/page_belah_ketupat.dart';
+import 'package:shapes_formula/pages/page_jajar_genjang.dart';
 import 'package:shapes_formula/pages/page_layang_layang.dart';
 import 'package:shapes_formula/pages/page_lingkaran.dart';
 import 'package:shapes_formula/pages/page_trapesium.dart';
@@ -77,7 +78,7 @@ Widget _shapesFormulaMenu(BangunDatar? bangunDatar) {
     case BangunDatar.trapesium:
       return PageTrapesium(imagePath: _getShapesImagePath(bangunDatar));
     case BangunDatar.jajarGenjang:
-      return Placeholder();
+      return PageJajarGenjang(imagePath: _getShapesImagePath(bangunDatar));
     case BangunDatar.segitiga:
       return Placeholder();
 
