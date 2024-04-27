@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:shapes_formula/constant/constant.dart';
 import 'package:shapes_formula/pages/page_belah_ketupat.dart';
+import 'package:shapes_formula/pages/page_layang_layang.dart';
 import 'package:shapes_formula/pages/page_lingkaran.dart';
 import 'package:shapes_formula/widgets/dropdown_shape.dart';
 
@@ -51,7 +52,7 @@ class _HomePageState extends State<HomePage> {
 
             // Content Body
             AnimatedSwitcher(
-              duration: const Duration(milliseconds: 1000),
+              duration: const Duration(milliseconds: 600),
               child: _selectedShape != null
                   ? _shapesFormulaMenu(_selectedShape)
                   : const SizedBox(),
@@ -71,7 +72,7 @@ Widget _shapesFormulaMenu(BangunDatar? bangunDatar) {
     case BangunDatar.belahKetupat:
       return PageBelahKetupat(imagePath: _getShapesImagePath(bangunDatar));
     case BangunDatar.layangLayang:
-      return Placeholder();
+      return PageLayangLayang(imagePath: _getShapesImagePath(bangunDatar));
     case BangunDatar.trapesium:
       return Placeholder();
     case BangunDatar.jajarGenjang:
