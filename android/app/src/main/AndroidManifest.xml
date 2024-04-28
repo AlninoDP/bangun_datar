@@ -1,6 +1,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
     <application
-        android:label="shapes_formula"
+        android:label="Geometri Dasar"
         android:name="${applicationName}"
         android:icon="@mipmap/launcher_icon">
         <activity
