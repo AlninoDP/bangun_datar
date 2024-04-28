@@ -26,7 +26,7 @@ class ProfileDrawer extends StatelessWidget {
         padding: EdgeInsets.zero,
         children: [
           DrawerHeader(
-            decoration: const BoxDecoration(color: Colors.deepPurple),
+            decoration: BoxDecoration(color: Colors.deepPurple[600]),
             child: Stack(
               children: [
                 AnimatedPositioned(
@@ -37,6 +37,7 @@ class ProfileDrawer extends StatelessWidget {
                     child: CircleAvatar(
                       backgroundImage: AssetImage(imgSrc1),
                       radius: 60,
+                      backgroundColor: Colors.black26,
                     ),
                   ),
                 ),
@@ -48,10 +49,15 @@ class ProfileDrawer extends StatelessWidget {
                     child: CircleAvatar(
                       backgroundImage: AssetImage(imgSrc2),
                       radius: 60,
-                      backgroundColor: Colors.black38,
+                      backgroundColor: Colors.black26,
                     ),
                   ),
-                )
+                ),
+                const Positioned(
+                  top: 119,
+                  left: 116,
+                  child: Icon(Icons.swap_horiz_rounded),
+                ),
               ],
             ),
           ),
