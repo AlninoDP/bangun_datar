@@ -8,6 +8,7 @@ import 'package:shapes_formula/pages/page_lingkaran.dart';
 import 'package:shapes_formula/pages/page_segitiga.dart';
 import 'package:shapes_formula/pages/page_trapesium.dart';
 import 'package:shapes_formula/widgets/dropdown_shape.dart';
+import 'package:shapes_formula/widgets/profile_drawer.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -25,8 +26,12 @@ class _HomePageState extends State<HomePage> {
     });
   }
 
-  int _currentDrawerPageIndex = 0;
-  PageController _pageController = PageController(initialPage: 0);
+  bool isSwapped = false;
+  void swapImages() {
+    setState(() {
+      isSwapped = !isSwapped;
+    });
+  }
 
   final List<Developer> _dev = [
     Developer(
@@ -51,41 +56,15 @@ class _HomePageState extends State<HomePage> {
         title: const Text('Rumus Bangun Datar'),
         centerTitle: true,
       ),
-      drawer: Drawer(
-        child: Column(
-          children: [
-            Expanded(
-              child: PageView.builder(
-                  itemCount: _dev.length,
-                  controller: _pageController,
-                  itemBuilder: (context, index) {
-                    return Transform.translate(
-                      offset: Offset(
-                          _currentDrawerPageIndex == index
-                              ? 0
-                              : (_currentDrawerPageIndex > index
-                                  ? -200.0
-                                  : 200.0),
-                          0),
-                      child: Container(
-                        decoration: BoxDecoration(
-                          image: DecorationImage(
-                            image: AssetImage(_dev[index].imgSrc),
-                            fit: BoxFit.cover,
-                          ),
-                        ),
-                        child: UserAccountsDrawerHeader(
-                          accountName: Text(_dev[index].nama),
-                          accountEmail: Text(_dev[index].email),
-                          currentAccountPicture: SizedBox(),
-                          decoration: BoxDecoration(color: Colors.transparent),
-                        ),
-                      ),
-                    );
-                  }),
-            ),
-          ],
-        ),
+      drawer: ProfileDrawer(
+        positionLeftImage1: isSwapped ? 70 : -150,
+        positionLeftImage2: isSwapped ? -150 : 70,
+        imgSrc1: _dev[1].imgSrc,
+        imgSrc2: _dev[0].imgSrc,
+        title: _dev[isSwapped ? 1 : 0].nama,
+        subtitle:
+            '${_dev[isSwapped ? 1 : 0].email}\n${_dev[isSwapped ? 1 : 0].nim} - Teknik Informatika',
+        onTap: () => swapImages(),
       ),
       body: SingleChildScrollView(
           child: Padding(
