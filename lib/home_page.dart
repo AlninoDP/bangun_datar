@@ -107,7 +107,7 @@ class _HomePageState extends State<HomePage> {
                     : Column(children: [
                         const SizedBox(height: 100),
                         Image.asset(
-                          'assets/images/app_icon.png',
+                          'assets/icons/app_icon.png',
                           width: 300,
                           height: 300,
                         ),
