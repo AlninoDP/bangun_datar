@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:shapes_formula/constant/constant.dart';
+import 'package:shapes_formula/models/developer.dart';
 import 'package:shapes_formula/pages/page_belah_ketupat.dart';
 import 'package:shapes_formula/pages/page_jajar_genjang.dart';
 import 'package:shapes_formula/pages/page_layang_layang.dart';
@@ -24,7 +25,23 @@ class _HomePageState extends State<HomePage> {
     });
   }
 
-  TextEditingController textFieldJariJari = TextEditingController();
+  int _currentDrawerPageIndex = 0;
+  PageController _pageController = PageController(initialPage: 0);
+
+  final List<Developer> _dev = [
+    Developer(
+      nama: 'Alnino Dio Putera',
+      email: 'alninodp@gmail.com',
+      nim: '20210801452',
+      imgSrc: 'assets/images/dev_images/alnino.png',
+    ),
+    Developer(
+      nama: 'Yoggy Montana Hendry',
+      email: 'johnDoe@gmail.com',
+      nim: '20210801502',
+      imgSrc: 'assets/images/dev_images/placeholder.png',
+    ),
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -34,14 +51,49 @@ class _HomePageState extends State<HomePage> {
         title: const Text('Rumus Bangun Datar'),
         centerTitle: true,
       ),
+      drawer: Drawer(
+        child: Column(
+          children: [
+            Expanded(
+              child: PageView.builder(
+                  itemCount: _dev.length,
+                  controller: _pageController,
+                  itemBuilder: (context, index) {
+                    return Transform.translate(
+                      offset: Offset(
+                          _currentDrawerPageIndex == index
+                              ? 0
+                              : (_currentDrawerPageIndex > index
+                                  ? -200.0
+                                  : 200.0),
+                          0),
+                      child: Container(
+                        decoration: BoxDecoration(
+                          image: DecorationImage(
+                            image: AssetImage(_dev[index].imgSrc),
+                            fit: BoxFit.cover,
+                          ),
+                        ),
+                        child: UserAccountsDrawerHeader(
+                          accountName: Text(_dev[index].nama),
+                          accountEmail: Text(_dev[index].email),
+                          currentAccountPicture: SizedBox(),
+                          decoration: BoxDecoration(color: Colors.transparent),
+                        ),
+                      ),
+                    );
+                  }),
+            ),
+          ],
+        ),
+      ),
       body: SingleChildScrollView(
           child: Padding(
         padding: const EdgeInsets.all(10.0),
         child: Column(
           children: [
-            const SizedBox(
-              height: 20,
-            ),
+            const SizedBox(height: 20),
+
             // Dropdown
             Center(
               child: DropdownShape(
